@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Современные новости{% endblock %}
+
+{% block body %}
+    <div class="container ">
+        <header class="blog-header py-3">
+            <div class="row flex-nowrap justify-content-between align-items-center">
+                <div class="col-4 pt-1">
+                    <a class="link-secondary" href="#"></a>
+                </div>
+                <div class="col-4 text-center">
+                    <a class="blog-header-logo text-dark" href="#">Современные новости</a>
+                </div>
+                <div class="col-4 d-flex justify-content-end align-items-center">
+                    <a class="link-secondary" href="#" aria-label="Search">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+                             stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img"
+                             viewBox="0 0 24 24"><title>Search</title>
+                            <circle cx="10.5" cy="10.5" r="7.5"></circle>
+                            <path d="M21 21l-5.2-5.2"></path>
+                        </svg>
+                    </a>
+                    <a class="btn btn-sm btn-outline-secondary" href="#">Войти</a>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <main class="container">
+        <div class="row mb-2 d-flex justify-content-around">
+
+            {% for news_item in news_list %}
+                <div class="col-md-6">
+                    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                        <div class="col p-4 d-flex flex-column position-static">
+                            <a href="#"><h3 class="mb-1">{{ news_item.title }}</h3></a>
+                            <div class="mb-1 text-muted">{{ news_item.createdAt|date("d-m-Y H:i:s") }}</div>
+                            <div class="mb-1 text-info">Количество просмотров: {{ news_item.viewCount }}</div>
+                            <div class="mb-1" style="color: #87b691">Количество комментариев: {{ news_item.comments.count }}</div>
+                            <p class="card-text mb-auto mt-2">{{ news_item.annotation }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </main>
+{% endblock %}
